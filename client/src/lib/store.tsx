@@ -2,23 +2,30 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { 
   UNITS, 
   TENANTS, 
+  PROJECTS,
+  LINE_ITEMS,
   MOCK_BANK_INCOME, 
   MOCK_CARD_EXPENSES, 
   MOCK_CASH_INTENTS,
   type Unit, 
   type Tenant, 
+  type Project,
+  type LineItem,
   type BankTransaction 
 } from './mockData';
 
 interface AppState {
   units: Unit[];
   tenants: Tenant[];
+  projects: Project[];
+  lineItems: LineItem[];
   incomeTransactions: BankTransaction[];
   expenseTransactions: BankTransaction[];
   cashIntents: any[];
   
   updateIncomeTransaction: (id: string, updates: Partial<BankTransaction>) => void;
   updateExpenseTransaction: (id: string, updates: Partial<BankTransaction>) => void;
+  addProjectLineItem: (lineItem: Omit<LineItem, 'id'>) => void;
 }
 
 const AppContext = createContext<AppState | undefined>(undefined);
@@ -27,16 +34,14 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const [incomeTransactions, setIncomeTransactions] = useState<BankTransaction[]>(MOCK_BANK_INCOME);
   const [expenseTransactions, setExpenseTransactions] = useState<BankTransaction[]>(MOCK_CARD_EXPENSES);
   const [cashIntents, setCashIntents] = useState<any[]>(MOCK_CASH_INTENTS);
+  const [lineItems, setLineItems] = useState<LineItem[]>(LINE_ITEMS);
 
-  // Auto-match logic (Simulated for "Flujo de trabajo 1: Banco")
   useEffect(() => {
-    // Run once on mount to simulate the "Auto-detect" feature
     setIncomeTransactions(prev => prev.map(tx => {
       if (tx.status !== 'pending') return tx;
 
-      // Simple heuristic matching
       const foundTenant = TENANTS.find(t => 
-        tx.description.toUpperCase().includes(t.name.toUpperCase().split(' ')[0]) || // Match first name
+        tx.description.toUpperCase().includes(t.name.toUpperCase().split(' ')[0]) || 
         tx.amount === t.monthlyRent
       );
 
@@ -60,15 +65,23 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     setExpenseTransactions(prev => prev.map(tx => tx.id === id ? { ...tx, ...updates } : tx));
   };
 
+  const addProjectLineItem = (newItem: Omit<LineItem, 'id'>) => {
+    const id = `li${lineItems.length + 1}`;
+    setLineItems(prev => [...prev, { ...newItem, id }]);
+  };
+
   return (
     <AppContext.Provider value={{
       units: UNITS,
       tenants: TENANTS,
+      projects: PROJECTS,
+      lineItems,
       incomeTransactions,
       expenseTransactions,
       cashIntents,
       updateIncomeTransaction,
-      updateExpenseTransaction
+      updateExpenseTransaction,
+      addProjectLineItem
     }}>
       {children}
     </AppContext.Provider>

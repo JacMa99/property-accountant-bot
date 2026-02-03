@@ -1,0 +1,51 @@
+Absolutely! Let’s integrate that project-based breakdown:
+
+---
+
+I want to develop an app, agent, or website for managing income and expenses from properties I manage and my grandmother’s household. Here’s the detailed breakdown:
+
+1. **Income Tracking:**
+
+   * Input bank statements (CSV) to track rental income.
+   * Each income correlates to specific units. If tenant Edwin pays rent, it links to Edwin’s unit (e.g., Unit A1).
+   * The app reconciles patterns (e.g., double payments for missed months).
+
+2. **Expense Tracking – Two Categories:**
+
+   * Property expenses from the bank account (repairs, investments, employees) and grandmother expenses from her credit card (household costs).
+   * Each expense links to a specific unit (e.g., Unit B2 repair) or general property or household.
+
+3. **Projects & Line Items:**
+
+   * I want to track large projects (e.g., installing security cameras) as umbrella expenses.
+   * Within a project, I need to link multiple line-item expenses—e.g., equipment cost, software, installation, cash payments—whether detected from statements or added manually.
+   * The project shows a total cost but allows drilling down into these detailed line items.
+
+4. **Monthly Fixed vs. Variable Expenses:**
+
+   * Define fixed monthly costs and track fluctuating expenses for both property and grandmother categories.
+
+5. **Cash Payments & Reminders:**
+
+   * Set reminders when making cash out-of-pocket payments. The app will prompt reconciliation at month’s end if these aren’t accounted for.
+
+6. **Reconciliation & Checkmarks:**
+
+   * The app reconciles expected patterns (e.g., expected rent or repeated expenses).
+   * Checkmarks indicate reconciliation—whether detected from statements or based on manual input.
+
+7. **High-Level Summary:**
+
+   * Provide an overview each month:
+
+     * Total property income (by unit/general).
+     * Total property expenses (by unit/general).
+     * Project expenses broken down by line items.
+     * Grandmother expenses.
+     * Net income or net loss.
+
+8. **Functionality Recap:**
+
+   * Inputs: Bank/credit card statements, manual inputs, project groupings.
+   * Categorize by property vs. grandmother, specific units, or projects.
+   * Reconcile patterns, track projects with detailed line items, and ensure overall clarity.

@@ -7,12 +7,12 @@ import NotFound from "@/pages/not-found";
 import Dashboard from "@/pages/Dashboard";
 import Income from "@/pages/Income";
 import Expenses from "@/pages/Expenses";
+import Projects from "@/pages/Projects";
 import Cash from "@/pages/Cash";
 import Reports from "@/pages/Reports";
 import Layout from "@/components/Layout";
 import { AppProvider } from "@/lib/store";
 
-// Placeholder components for routes we haven't built yet
 const MasterData = () => (
   <div className="space-y-6 animate-in fade-in duration-500">
     <div className="p-8 border rounded-lg bg-card shadow-sm">
@@ -29,6 +29,7 @@ function Router() {
         <Route path="/" component={Dashboard} />
         <Route path="/income" component={Income} />
         <Route path="/expenses" component={Expenses} />
+        <Route path="/projects" component={Projects} />
         <Route path="/cash" component={Cash} />
         <Route path="/reports" component={Reports} />
         <Route path="/master-data" component={MasterData} />

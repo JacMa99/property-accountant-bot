@@ -6,7 +6,8 @@ import {
   Wallet, 
   FileBarChart, 
   Settings,
-  Building2
+  Building2,
+  Briefcase
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -14,6 +15,7 @@ const NAV_ITEMS = [
   { label: 'Dashboard', icon: LayoutDashboard, href: '/' },
   { label: 'Ingresos (Banco)', icon: ArrowDownToLine, href: '/income' },
   { label: 'Gastos (Tarjeta)', icon: CreditCard, href: '/expenses' },
+  { label: 'Proyectos', icon: Briefcase, href: '/projects' },
   { label: 'Efectivo / Caja', icon: Wallet, href: '/cash' },
   { label: 'Reportes', icon: FileBarChart, href: '/reports' },
   { label: 'Maestros', icon: Settings, href: '/master-data' },

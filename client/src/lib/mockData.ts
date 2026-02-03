@@ -1,4 +1,3 @@
-// Data types based on the prompt
 export type UnitType = 'Apto' | 'Casa' | 'Lote';
 
 export interface Unit {
@@ -14,18 +13,35 @@ export interface Tenant {
   monthlyRent: number;
 }
 
+export interface Project {
+  id: string;
+  name: string;
+  description: string;
+  totalBudget: number;
+  status: 'active' | 'completed';
+}
+
+export interface LineItem {
+  id: string;
+  projectId: string;
+  description: string;
+  amount: number;
+  date: string;
+  category: 'equipment' | 'software' | 'installation' | 'cash' | 'other';
+}
+
 export interface BankTransaction {
   id: string;
-  date: string; // YYYY-MM-DD
+  date: string;
   description: string;
-  amount: number; // Positive for deposit, negative for withdrawal
+  amount: number;
   type: 'deposit' | 'withdrawal';
   status: 'pending' | 'matched' | 'review';
-  matchId?: string; // ID of the matched rent or expense
+  matchId?: string;
+  projectId?: string; // New field for linking to projects
   note?: string;
 }
 
-// Master Data provided in prompt
 export const UNITS: Unit[] = [
   { id: 'ED-A1', type: 'Apto', name: 'Edificio Apt 1' },
   { id: 'ED-A2', type: 'Apto', name: 'Edificio Apt 2' },
@@ -57,19 +73,28 @@ export const TENANTS: Tenant[] = [
   { id: 't12', name: 'Rafelito Mirabal', unitId: 'APT-IND', monthlyRent: 10000 },
 ];
 
-// Mock Bank Data (Ingresos/Rentas)
+export const PROJECTS: Project[] = [
+  { id: 'p1', name: 'Cámaras de Seguridad', description: 'Instalación de sistema perimetral', totalBudget: 50000, status: 'active' },
+  { id: 'p2', name: 'Remodelación Lote 4', description: 'Mejoras estructurales y pintura', totalBudget: 120000, status: 'active' },
+];
+
+export const LINE_ITEMS: LineItem[] = [
+  { id: 'li1', projectId: 'p1', description: 'Kit 8 Cámaras 4K', amount: 25000, date: '2024-02-10', category: 'equipment' },
+  { id: 'li2', projectId: 'p1', description: 'Instalación técnica', amount: 15000, date: '2024-02-12', category: 'installation' },
+  { id: 'li3', projectId: 'p1', description: 'Licencia Cloud', amount: 5000, date: '2024-02-13', category: 'software' },
+];
+
 export const MOCK_BANK_INCOME: BankTransaction[] = [
   { id: 'b1', date: '2024-02-01', description: 'DEP. TIO CHIRRE RENTA', amount: 8000, type: 'deposit', status: 'pending' },
   { id: 'b2', date: '2024-02-02', description: 'TRANSFERENCIA EDWIN ABREU', amount: 8000, type: 'deposit', status: 'pending' },
   { id: 'b3', date: '2024-02-03', description: 'DEP. COCCIA DOMINICANA', amount: 24200, type: 'deposit', status: 'pending' },
-  { id: 'b4', date: '2024-02-05', description: 'DEPOSITO JOCHI', amount: 11000, type: 'deposit', status: 'pending' }, // Double payment example? Or sum of two units?
-  { id: 'b5', date: '2024-02-05', description: 'TRANSFERENCIA RECIBIDA', amount: 9350, type: 'deposit', status: 'pending' }, // Julissa amount matches
-  { id: 'b6', date: '2024-02-10', description: 'DEP. ROBERTO DIAZ', amount: 10500, type: 'deposit', status: 'pending' }, // $10 off
+  { id: 'b4', date: '2024-02-05', description: 'DEPOSITO JOCHI', amount: 11000, type: 'deposit', status: 'pending' },
+  { id: 'b5', date: '2024-02-05', description: 'TRANSFERENCIA RECIBIDA', amount: 9350, type: 'deposit', status: 'pending' },
+  { id: 'b6', date: '2024-02-10', description: 'DEP. ROBERTO DIAZ', amount: 10500, type: 'deposit', status: 'pending' },
   { id: 'b7', date: '2024-02-15', description: 'DEP. SARITA RENTA FEB', amount: 26250, type: 'deposit', status: 'pending' },
-  { id: 'b8', date: '2024-02-28', description: 'ATM RETIRO', amount: -5000, type: 'withdrawal', status: 'pending' }, // Cash withdrawal
+  { id: 'b8', date: '2024-02-28', description: 'ATM RETIRO', amount: -5000, type: 'withdrawal', status: 'pending' },
 ];
 
-// Mock Card Data (Gastos)
 export const MOCK_CARD_EXPENSES: BankTransaction[] = [
   { id: 'c1', date: '2024-02-02', description: 'SUPERMERCADO BRAVO', amount: -3500.50, type: 'withdrawal', status: 'pending' },
   { id: 'c2', date: '2024-02-05', description: 'FERRETERIA OCHOA', amount: -1200.00, type: 'withdrawal', status: 'pending' },
