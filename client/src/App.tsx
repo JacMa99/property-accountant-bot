@@ -10,6 +10,7 @@ import Expenses from "@/pages/Expenses";
 import Projects from "@/pages/Projects";
 import Cash from "@/pages/Cash";
 import Reports from "@/pages/Reports";
+import UploadCSV from "@/pages/UploadCSV";
 import Layout from "@/components/Layout";
 import { AppProvider } from "@/lib/store";
 
@@ -27,6 +28,7 @@ function Router() {
     <Layout>
       <Switch>
         <Route path="/" component={Dashboard} />
+        <Route path="/upload" component={UploadCSV} />
         <Route path="/income" component={Income} />
         <Route path="/expenses" component={Expenses} />
         <Route path="/projects" component={Projects} />

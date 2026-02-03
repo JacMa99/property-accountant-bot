@@ -7,12 +7,14 @@ import {
   FileBarChart, 
   Settings,
   Building2,
-  Briefcase
+  Briefcase,
+  Upload
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
   { label: 'Dashboard', icon: LayoutDashboard, href: '/' },
+  { label: 'Cargar CSV', icon: Upload, href: '/upload' },
   { label: 'Ingresos (Banco)', icon: ArrowDownToLine, href: '/income' },
   { label: 'Gastos (Tarjeta)', icon: CreditCard, href: '/expenses' },
   { label: 'Proyectos', icon: Briefcase, href: '/projects' },
